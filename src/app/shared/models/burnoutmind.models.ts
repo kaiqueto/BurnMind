@@ -85,7 +85,7 @@ export interface EducationTopic {
   summary: string;
   tag: string;
   icon: string;
-  content?: { definition: string; signs: string[]; prevention: string; disclaimer: string };
+  content?: { heading: string; definition: string; signs: string[]; prevention: string; disclaimer: string };
 }
 
 export interface EnergyPoint { date: IsoDate; energy?: EnergyLevel; }
@@ -103,14 +103,12 @@ export interface WeeklyInsight {
 
 export interface ChatMessage { id: string; role: 'user' | 'assistant'; text: string; createdAt: IsoDateTime; }
 
+/** Tipo de serviço de saúde (sem localização específica; a busca é feita no mapa). */
 export interface CareService {
   id: string;
-  marker: string;
   kind: 'UBS' | 'CAPS';
   name: string;
   description: string;
-  url?: string;
-  isFictional: boolean;
 }
 
 export interface PdfExportOptions { includeAnswers: boolean; includeNote: boolean; }

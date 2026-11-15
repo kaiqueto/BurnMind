@@ -8,6 +8,8 @@ import {
   LocalStorageCheckInRepository,
 } from './features/check-in/services/check-in.repository';
 
+import { ChatResponder, ScriptedChatResponder } from './features/chat/chat-responder';
+
 registerLocaleData(localePt, 'pt-BR');
 
 export const appConfig: ApplicationConfig = {
@@ -17,5 +19,7 @@ export const appConfig: ApplicationConfig = {
     { provide: LOCALE_ID, useValue: 'pt-BR' },
     // Trocar por uma implementação de API quando o backend existir.
     { provide: CheckInRepository, useClass: LocalStorageCheckInRepository },
+    // Respostas roteirizadas. Trocar por outra implementação de ChatResponder se a equipe optar por IA.
+    { provide: ChatResponder, useClass: ScriptedChatResponder },
   ],
 };

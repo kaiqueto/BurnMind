@@ -7,7 +7,7 @@ import { ConsentService } from './core/services/consent.service';
  * Rotas do BurnoutMind. Cada etapa de desenvolvimento adiciona suas rotas aqui.
  * Etapas 1-4: home, boas-vindas, sobre, check-in, formulario/:step, resultados,
  * calendario, calendario/insights, perfis (+ modal /perfis/:slug).
- * Previstas (placeholder "Em breve"): doencas, chat, resultados/assistencia-proxima.
+ * Etapa 5: doencas (+ modal /doencas/:slug), chat, resultados/assistencia-proxima.
  */
 export const routes: Routes = [
   // Primeiro acesso (sem consentimento) → boas-vindas; depois → home.
@@ -69,11 +69,31 @@ export const routes: Routes = [
       },
     ],
   },
-  // Páginas previstas, ainda não implementadas: mostram aviso em vez de cair silenciosamente na Home.
-  ...['doencas', 'chat', 'resultados/assistencia-proxima'].map((path) => ({
-    path,
-    title: 'Em breve · BurnoutMind',
-    loadComponent: () => import('./features/coming-soon/coming-soon-page.component').then((m) => m.ComingSoonPageComponent),
-  })),
+  {
+    path: 'resultados/assistencia-proxima',
+    title: 'Assistência próxima · BurnoutMind',
+    loadComponent: () => import('./features/nearby-care/nearby-care-page.component').then((m) => m.NearbyCarePageComponent),
+  },
+  {
+    path: 'doencas',
+    title: 'Doenças · BurnoutMind',
+    loadComponent: () =>
+      import('./features/education-library/education-library-page.component').then((m) => m.EducationLibraryPageComponent),
+    children: [
+      {
+        path: ':slug',
+        title: 'Tema · BurnoutMind',
+        loadComponent: () =>
+          import('./features/education-library/components/topic-detail-modal/topic-detail-modal.component').then(
+            (m) => m.TopicDetailModalComponent,
+          ),
+      },
+    ],
+  },
+  {
+    path: 'chat',
+    title: 'Chat · BurnoutMind',
+    loadComponent: () => import('./features/chat/chat-page.component').then((m) => m.ChatPageComponent),
+  },
   { path: '**', redirectTo: 'home' },
 ];
