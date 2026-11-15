@@ -1,5 +1,15 @@
 # BurnMind
 
+> O objetivo desse projeto é criar um sistema que auxilie desenvolvedores e estudantes do mercado de tecnologia a ter uma ferramenta que o auxilie com os estresse provocado pelas altas demandas de trabalho e as cargas de estudo. O sistema contará com formulários, chatbot para buscar mais informações condições e cuidados, alertar sobre possíveis sinais de alto estresse e localização de agentes de saúde, na região do usuário, para antedimentos e consultas.
+
+#Tecnologias utilizadas no projeto:
+- **Framework:** Angular v.22.2.6
+- **Estilização:** Bootstrap
+- **Gerenciamento de Estado / Rotas:** Angular Router, Reactive Forms
+
+#Arquitetura e Estrutura de Pastas
+
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.6.
 
 ## Development server

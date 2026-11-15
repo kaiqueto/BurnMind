@@ -1,0 +1,79 @@
+// ============================================================
+// BurnoutMind — Design tokens
+// Fonte: "Paleta de cores.pdf" (hex exatos). Demais valores [ESTIMADO]:
+// confirmar no Figma Dev Mode.
+// Importar ANTES do bootstrap em styles.scss
+// ============================================================
+
+// ---------- Cores (11) ----------
+$bm-color-bg:            #FBF8F3; // Fundo principal
+$bm-color-ink:           #1B2228; // Texto principal, logo, ícones
+$bm-color-brand:         #F26035; // Destaque de marca, ações, estado ativo
+$bm-color-surface:       #FFFFFF; // Cartões
+$bm-color-muted:         #596462; // Texto secundário
+$bm-color-brand-strong:  #92371D; // Contraste sobre coral claro (eyebrow, ícones, nav ativo)
+$bm-color-brand-soft:    #FCE8DF; // Fundo suave: check-in, insights, chips
+$bm-color-care-soft:     #E9EFDF; // Fundo suave: dica de cuidado
+$bm-color-care-ink:      #3E5847; // Texto sobre care-soft; marca no rodapé
+$bm-color-footer-bg:     #F1ECE4; // Rodapé, notas neutras
+$bm-color-border:        #E6E2DB; // Divisores, bordas, trilho do anel
+
+// ---------- Tipografia ----------
+$bm-font-family:   'Nunito Variable', 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; // [ESTIMADO]
+$bm-fs-display:    2.5rem;   // 40px  H1 desktop
+$bm-fs-display-sm: 1.75rem;  // 28px  H1 mobile
+$bm-fs-title:      1.75rem;  // 28px  H2 de cartão
+$bm-fs-title-sm:   1.375rem; // 22px
+$bm-fs-subtitle:   1.125rem; // 18px
+$bm-fs-body:       1rem;     // 16px
+$bm-fs-small:      0.875rem; // 14px
+$bm-fs-eyebrow:    0.75rem;  // 12px
+$bm-fw-regular: 400;
+$bm-fw-bold:    700;
+$bm-fw-black:   800;
+
+// ---------- Espaçamento (base 4px) ----------
+$bm-space-1: 0.25rem; $bm-space-2: 0.5rem;  $bm-space-3: 0.75rem;
+$bm-space-4: 1rem;    $bm-space-5: 1.5rem;  $bm-space-6: 2rem;
+$bm-space-7: 3rem;
+
+// ---------- Raios e sombras [ESTIMADO] ----------
+$bm-radius-sm:   0.5rem;   // 8
+$bm-radius-md:   0.75rem;  // 12 botões, campos, radio-cards
+$bm-radius-lg:   1.25rem;  // 20 cartões
+$bm-radius-xl:   1.75rem;  // 28 cartões de destaque
+$bm-radius-pill: 999px;
+$bm-shadow-card:  0 2px 8px rgba($bm-color-ink, .06);
+$bm-shadow-modal: 0 16px 48px rgba($bm-color-ink, .18);
+
+// ---------- Layout ----------
+$bm-content-max: 1008px; // [ESTIMADO]
+$bm-header-height: 4.25rem;
+
+// ---------- Bootstrap overrides (antes do @import do bootstrap) ----------
+$primary:            $bm-color-brand;
+$body-bg:            $bm-color-bg;
+$body-color:         $bm-color-ink;
+$secondary:          $bm-color-muted;
+$border-color:       $bm-color-border;
+$font-family-sans-serif: $bm-font-family;
+$headings-font-weight: $bm-fw-black;
+$headings-color:     $bm-color-ink;
+$link-color:         $bm-color-brand-strong;
+$link-hover-color:   $bm-color-ink;
+$border-radius:      $bm-radius-md;
+$border-radius-lg:   $bm-radius-lg;
+$border-radius-xl:   $bm-radius-xl;
+$border-radius-pill: $bm-radius-pill;
+$card-bg:            $bm-color-surface;
+$card-border-width:  0;
+$card-border-radius: $bm-radius-lg;
+$card-box-shadow:    $bm-shadow-card;
+$btn-font-weight:    $bm-fw-bold;
+$btn-border-radius:  $bm-radius-md;
+$form-check-input-checked-bg-color: $bm-color-brand;
+$input-border-color: $bm-color-border;
+$focus-ring-color:   rgba($bm-color-brand-strong, .5);
+$modal-content-border-radius: $bm-radius-xl;
+$enable-shadows: true;
+

@@ -1,0 +1,198 @@
+// ============================================================
+// BurnoutMind — CSS custom properties + classes de componente (BEM)
+// Importar DEPOIS do Bootstrap. Valores [ESTIMADO]: confirmar no Figma.
+// ============================================================
+@import 'tokens';
+
+:root {
+  --bm-color-bg: #{$bm-color-bg};
+  --bm-color-ink: #{$bm-color-ink};
+  --bm-color-brand: #{$bm-color-brand};
+  --bm-color-surface: #{$bm-color-surface};
+  --bm-color-muted: #{$bm-color-muted};
+  --bm-color-brand-strong: #{$bm-color-brand-strong};
+  --bm-color-brand-soft: #{$bm-color-brand-soft};
+  --bm-color-care-soft: #{$bm-color-care-soft};
+  --bm-color-care-ink: #{$bm-color-care-ink};
+  --bm-color-footer-bg: #{$bm-color-footer-bg};
+  --bm-color-border: #{$bm-color-border};
+  --bm-radius-lg: #{$bm-radius-lg};
+  --bm-shadow-card: #{$bm-shadow-card};
+}
+
+// ---------- Botões ----------
+// Botão primário: fundo coral + texto ink (AA 4,98:1). Nunca texto branco.
+.btn-primary {
+  --bs-btn-color: #{$bm-color-ink};
+  --bs-btn-bg: #{$bm-color-brand};
+  --bs-btn-border-color: #{$bm-color-brand};
+  --bs-btn-hover-color: #{$bm-color-ink};
+  --bs-btn-hover-bg: #{shade-color($bm-color-brand, 8%)};
+  --bs-btn-hover-border-color: #{shade-color($bm-color-brand, 8%)};
+  --bs-btn-active-color: #{$bm-color-ink};
+  --bs-btn-active-bg: #{shade-color($bm-color-brand, 14%)};
+  --bs-btn-active-border-color: #{shade-color($bm-color-brand, 14%)};
+  --bs-btn-disabled-color: #{$bm-color-ink};
+  --bs-btn-disabled-bg: #{$bm-color-brand};
+  --bs-btn-disabled-border-color: #{$bm-color-brand};
+  --bs-btn-focus-shadow-rgb: 146, 55, 29;
+}
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: $bm-space-2; }
+
+// ---------- Tipografia ----------
+body { font-family: $bm-font-family; }
+.bm-eyebrow {
+  display: inline-flex; align-items: center; gap: $bm-space-2; margin: 0;
+  font-size: $bm-fs-eyebrow; font-weight: $bm-fw-black; letter-spacing: .08em;
+  text-transform: uppercase; color: $bm-color-brand-strong; text-decoration: none;
+  &--care { color: $bm-color-care-ink; }
+}
+a.bm-eyebrow:hover { text-decoration: underline; }
+.bm-page-title { font-size: $bm-fs-display-sm; line-height: 1.2; margin: $bm-space-2 0 $bm-space-2;
+  @include media-breakpoint-up(md) { font-size: $bm-fs-display; line-height: 1.2; } }
+.bm-page-subtitle { margin: 0; color: $bm-color-muted; }
+.bm-card-title { font-size: $bm-fs-title-sm; line-height: 1.25; margin: 0 0 $bm-space-2;
+  @include media-breakpoint-up(md) { font-size: $bm-fs-title; } }
+.bm-section-title { font-size: $bm-fs-title-sm; margin: 0 0 $bm-space-4; }
+.bm-muted { color: $bm-color-muted; }
+.bm-icon-strong { color: $bm-color-brand-strong; flex: none; }
+
+// ---------- Layout ----------
+.bm-shell { min-height: 100vh; display: flex; flex-direction: column;
+  &__main { flex: 1; outline: none; } }
+.bm-page { width: 100%; max-width: calc(#{$bm-content-max} + 2rem); margin-inline: auto;
+  padding: $bm-space-6 $bm-space-4 $bm-space-7;
+  &__header { margin-bottom: $bm-space-5; } }
+
+// ---------- Header ----------
+.bm-header { background: $bm-color-bg; border-bottom: 1px solid $bm-color-border;
+  &__inner { width: 100%; max-width: 1240px; margin-inline: auto; padding: $bm-space-3 $bm-space-4;
+    display: flex; flex-direction: column; gap: $bm-space-3;
+    @include media-breakpoint-up(md) { flex-direction: row; align-items: center; justify-content: space-between; } }
+  &__nav { display: grid; grid-template-columns: repeat(3, 1fr); gap: $bm-space-2;
+    @include media-breakpoint-up(md) { display: flex; gap: $bm-space-4; } }
+  &__nav-link { color: $bm-color-muted; font-weight: $bm-fw-bold; text-decoration: none;
+    text-align: center; padding: $bm-space-2 $bm-space-3; border-radius: $bm-radius-pill; font-size: $bm-fs-small;
+    &:hover { color: $bm-color-ink; }
+    &--active { color: $bm-color-brand-strong; background: $bm-color-brand-soft; }
+    @include media-breakpoint-up(md) { padding: $bm-space-2 0; border-radius: 0; border-bottom: 2px solid transparent;
+      &--active { background: transparent; border-bottom-color: $bm-color-brand; } } }
+  &__user { display: none; align-items: center; gap: $bm-space-2; font-weight: $bm-fw-bold; min-width: 8rem; justify-content: flex-end;
+    @include media-breakpoint-up(lg) { display: flex; } } }
+.bm-header__home { display: inline-flex; text-decoration: none; color: inherit; }
+.bm-brand { display: inline-flex; align-items: center; gap: $bm-space-2; text-decoration: none; color: $bm-color-ink;
+  &__logo { width: 2.5rem; height: 2.5rem; flex: none; }
+  &__text { display: flex; flex-direction: column; line-height: 1.1; }
+  &__name { font-size: 1.5rem; font-weight: $bm-fw-black; }
+  &__accent { color: $bm-color-brand; }
+  &__tagline { font-size: .6875rem; color: $bm-color-muted; font-weight: $bm-fw-bold; } }
+.bm-avatar { width: 2rem; height: 2rem; border-radius: 50%; background: $bm-color-brand-soft; color: $bm-color-brand-strong;
+  display: inline-flex; align-items: center; justify-content: center; font-weight: $bm-fw-black; }
+
+// ---------- Footer ----------
+.bm-footer { background: $bm-color-footer-bg; color: $bm-color-muted; font-size: $bm-fs-small;
+  &__inner { max-width: calc(#{$bm-content-max} + 2rem); margin-inline: auto; padding: $bm-space-5 $bm-space-4; }
+  &__brand { color: $bm-color-care-ink; font-weight: $bm-fw-black; margin: 0 0 $bm-space-2; }
+  &__text { margin: 0; } }
+
+// ---------- Card / chip / link-card / tile / disclaimer ----------
+bm-card { display: block; }
+.bm-card { background: $bm-color-surface; border-radius: $bm-radius-xl; box-shadow: $bm-shadow-card; padding: $bm-space-5;
+  &--brand-soft { background: $bm-color-brand-soft; }
+  &--care-soft  { background: $bm-color-care-soft; color: $bm-color-care-ink; }
+  &--footer     { background: $bm-color-footer-bg; box-shadow: none; } }
+.bm-chip { display: inline-flex; align-items: center; gap: $bm-space-2; padding: .25rem .75rem; border-radius: $bm-radius-pill;
+  font-size: $bm-fs-eyebrow; font-weight: $bm-fw-black; background: $bm-color-brand-soft; color: $bm-color-brand-strong;
+  &--outline { background: transparent; border: 1px solid $bm-color-border; }
+  &--plain { background: transparent; padding-inline: 0; } }
+.bm-link-card { display: flex; align-items: center; gap: $bm-space-3; padding: $bm-space-4 $bm-space-5; border-radius: $bm-radius-lg;
+  background: $bm-color-surface; box-shadow: $bm-shadow-card; text-decoration: none; color: $bm-color-ink;
+  &:hover { box-shadow: 0 4px 14px rgba($bm-color-ink, .1); }
+  &--brand-soft { background: $bm-color-brand-soft; }
+  &__body { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+  &__title { font-weight: $bm-fw-black; }
+  &__subtitle { font-size: $bm-fs-small; color: $bm-color-muted; }
+  &__chevron { color: $bm-color-ink; flex: none; } }
+.bm-tile { display: flex; flex-direction: column; justify-content: space-between; gap: $bm-space-5; min-height: 6.5rem; height: 100%;
+  padding: $bm-space-4 $bm-space-5; border-radius: $bm-radius-lg; background: $bm-color-surface; box-shadow: $bm-shadow-card;
+  text-decoration: none; color: $bm-color-ink; font-weight: $bm-fw-black;
+  &:hover { box-shadow: 0 4px 14px rgba($bm-color-ink, .1); } }
+.bm-disclaimer { display: flex; align-items: flex-start; gap: $bm-space-2; font-size: $bm-fs-small; color: $bm-color-muted; margin: 0;
+  svg { flex: none; margin-top: .15rem; } }
+.bm-tip { display: flex; align-items: flex-start; gap: $bm-space-3; margin: $bm-space-4 0;
+  &__icon { width: 2.5rem; height: 2.5rem; border-radius: 50%; background: $bm-color-brand-soft; color: $bm-color-brand-strong;
+    display: inline-flex; align-items: center; justify-content: center; flex: none; }
+  &__title { font-weight: $bm-fw-black; display: block; }
+  &__text { margin: 0; font-size: $bm-fs-small; } }
+
+// ---------- Foco visível (WCAG 2.4.7) ----------
+a:focus-visible, button:focus-visible, .btn:focus-visible {
+  outline: 3px solid $focus-ring-color; outline-offset: 2px; }
+
+// ---------- Formulários (check-in, consentimento) ----------
+.bm-fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.bm-option-grid { display: grid; gap: $bm-space-3; grid-template-columns: repeat(2, 1fr);
+  &--4 { @include media-breakpoint-up(sm) { grid-template-columns: repeat(4, 1fr); } }
+  &--3 { grid-template-columns: repeat(3, 1fr); } }
+.bm-option { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: $bm-space-2;
+  min-height: 5rem; padding: $bm-space-3; cursor: pointer; text-align: center; font-weight: $bm-fw-bold; color: $bm-color-ink;
+  background: $bm-color-footer-bg; border: 1px solid transparent; border-radius: $bm-radius-md;
+  svg { color: $bm-color-brand-strong; }
+  &:hover { border-color: $bm-color-border; }
+  &:has(input:checked) { background: $bm-color-brand-soft; border-color: $bm-color-brand; }
+  &:has(input:focus-visible) { outline: 3px solid $focus-ring-color; outline-offset: 2px; } }
+.bm-note { resize: vertical; min-height: 8rem; border-radius: $bm-radius-md; }
+.bm-error { color: $bm-color-brand-strong; font-weight: $bm-fw-bold; font-size: $bm-fs-small; min-height: 1.25rem; }
+
+// ---------- Questionário ----------
+.bm-stepper { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: $bm-space-3;
+  &__item { display: flex; align-items: center; gap: $bm-space-3; color: $bm-color-muted; font-weight: $bm-fw-bold;
+    &--current { color: $bm-color-ink; }
+    &--done { color: $bm-color-ink; } }
+  &__marker { width: 2rem; height: 2rem; border-radius: 50%; flex: none; display: inline-flex; align-items: center; justify-content: center;
+    background: $bm-color-footer-bg; font-size: $bm-fs-small; color: $bm-color-ink; }
+  &__item--current &__marker { background: $bm-color-brand-soft; color: $bm-color-brand-strong; }
+  &__item--done &__marker { background: $bm-color-brand; } }
+.bm-step-progress { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: $bm-space-2;
+  &__segment { height: .375rem; border-radius: $bm-radius-pill; background: $bm-color-border;
+    &--filled { background: $bm-color-brand; } } }
+.bm-answer { display: flex; align-items: center; gap: $bm-space-3; padding: $bm-space-4; cursor: pointer; font-weight: $bm-fw-bold;
+  background: $bm-color-surface; border: 1px solid $bm-color-border; border-radius: $bm-radius-md;
+  &:hover { border-color: $bm-color-muted; }
+  &:has(input:checked) { background: $bm-color-brand-soft; border-color: $bm-color-brand; }
+  &:has(input:focus-visible) { outline: 3px solid $focus-ring-color; outline-offset: 2px; } }
+
+// ---------- Resultados ----------
+.bm-ring { position: relative; display: block; width: 12.5rem; max-width: 100%;
+  svg:first-child { display: block; width: 100%; height: auto; }
+  &__track { stroke: $bm-color-border; }
+  &__value { stroke: $bm-color-brand; }
+  &__label { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: $bm-space-1; padding: 0 3.25rem; font-weight: $bm-fw-black; font-size: 1.125rem; line-height: 1.2; text-align: center; } }
+
+// ---------- Modal (<dialog>) ----------
+.bm-modal { border: 0; padding: 0; background: transparent; max-width: 100vw; width: min(36rem, calc(100vw - 2rem)); max-height: calc(100vh - 2rem);
+  &::backdrop { background: rgba($bm-color-ink, .45); }
+  &__panel { position: relative; background: $bm-color-surface; border-radius: $bm-radius-xl; box-shadow: $bm-shadow-modal;
+    padding: $bm-space-6 $bm-space-5 $bm-space-5; max-height: calc(100vh - 2rem); overflow-y: auto; }
+  &__close { position: absolute; top: $bm-space-4; right: $bm-space-4; } }
+.bm-profile-card__badge { min-height: 1.75rem; }
+
+// ---------- Calendário ----------
+.bm-calendar { width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 0 .25rem;
+  th { text-align: center; font-size: $bm-fs-small; color: $bm-color-muted; font-weight: $bm-fw-bold; padding-bottom: $bm-space-2; }
+  td { padding: 0; height: 4.25rem; vertical-align: top; text-align: center; }
+  &__day { width: 100%; min-height: 3.75rem; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: .125rem;
+    padding: $bm-space-1; background: transparent; color: $bm-color-ink; border: 2px solid transparent; border-radius: $bm-radius-md; font-weight: $bm-fw-bold;
+    &:hover:not(:disabled) { background: $bm-color-footer-bg; }
+    &:disabled { color: $bm-color-muted; opacity: .55; }
+    &--selected { border-color: $bm-color-brand; background: $bm-color-brand-soft; }
+    &[aria-current='date'] .bm-calendar__num { text-decoration: underline; text-decoration-color: $bm-color-brand; text-underline-offset: 3px; } } }
+.bm-day-marker { display: inline-flex; align-items: center; gap: .125rem; font-size: .6875rem; color: $bm-color-brand-strong; font-weight: $bm-fw-black; }
+
+// ---------- Gráfico de energia ----------
+.bm-chart { width: 100%; height: auto; display: block;
+  &__grid { stroke: $bm-color-border; stroke-width: 1; }
+  &__label { fill: $bm-color-muted; font-size: 12px; font-family: $bm-font-family; &--day { fill: $bm-color-ink; font-weight: 700; } }
+  &__line { stroke: $bm-color-brand; stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+  &__dot { fill: $bm-color-surface; stroke: $bm-color-brand; stroke-width: 2.5; } }
