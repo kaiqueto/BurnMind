@@ -13,7 +13,7 @@ import { REGION_MAX_LENGTH } from '../../services/region.service';
     @if (!editing()) {
       <div class="d-flex flex-wrap align-items-center gap-2">
         <span class="bm-chip"><svg lucideMapPin [size]="14"></svg>{{ region() || 'Região não informada' }}</span>
-        <button type="button" class="btn btn-outline-secondary btn-sm" (click)="edit()">
+        <button type="button" class="btn btn-outline-secondary" (click)="edit()">
           <svg lucideSlidersHorizontal [size]="14"></svg>{{ region() ? 'Alterar região' : 'Informar região' }}
         </button>
       </div>

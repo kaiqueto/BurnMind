@@ -40,11 +40,11 @@ import { buildMonthGrid, monthTitle } from './calendar-grid';
         <div class="col-lg-7">
           <bm-card>
             <div class="d-flex align-items-center justify-content-between mb-3">
-              <button type="button" class="btn btn-link p-1" aria-label="Mês anterior" (click)="shift(-1)">
+              <button type="button" class="btn btn-link bm-icon-btn p-1" aria-label="Mês anterior" (click)="shift(-1)">
                 <svg lucideChevronLeft [size]="20"></svg>
               </button>
               <h2 class="bm-card-title mb-0" aria-live="polite">{{ title() }}</h2>
-              <button type="button" class="btn btn-link p-1" aria-label="Próximo mês" [disabled]="!canGoNext()" (click)="shift(1)">
+              <button type="button" class="btn btn-link bm-icon-btn p-1" aria-label="Próximo mês" [disabled]="!canGoNext()" (click)="shift(1)">
                 <svg lucideChevronRight [size]="20"></svg>
               </button>
             </div>
