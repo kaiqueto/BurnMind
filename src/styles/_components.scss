@@ -196,3 +196,34 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
   &__label { fill: $bm-color-muted; font-size: 12px; font-family: $bm-font-family; &--day { fill: $bm-color-ink; font-weight: 700; } }
   &__line { stroke: $bm-color-brand; stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
   &__dot { fill: $bm-color-surface; stroke: $bm-color-brand; stroke-width: 2.5; } }
+
+// ---------- Biblioteca ----------
+.bm-icon-tile { width: 2.5rem; height: 2.5rem; border-radius: $bm-radius-md; background: $bm-color-footer-bg; color: $bm-color-brand-strong;
+  display: inline-flex; align-items: center; justify-content: center; }
+.bm-topic-card { display: flex; flex-direction: column; height: 100%; padding: $bm-space-5; border-radius: $bm-radius-xl; background: $bm-color-surface;
+  box-shadow: $bm-shadow-card; text-decoration: none; color: $bm-color-ink;
+  &:hover { box-shadow: 0 4px 14px rgba($bm-color-ink, .1); }
+  &--soon { box-shadow: none; border: 1px dashed $bm-color-border; background: transparent; } }
+.bm-search { position: relative;
+  &__icon { position: absolute; left: $bm-space-3; top: 50%; transform: translateY(-50%); color: $bm-color-muted; pointer-events: none; }
+  &__input { padding-left: 2.5rem; border-radius: $bm-radius-md; min-height: 2.75rem; } }
+
+// ---------- Chat ----------
+.bm-chat { display: flex; flex-direction: column; gap: $bm-space-3; min-height: 18rem; max-height: 28rem; overflow-y: auto; padding: $bm-space-2 $bm-space-1 $bm-space-3;
+  &__typing { margin: 0; font-size: $bm-fs-small; color: $bm-color-muted; } }
+.bm-chat-bubble { display: block; max-width: 85%; padding: $bm-space-3 $bm-space-4; border-radius: $bm-radius-lg;
+  &__author { display: block; font-size: $bm-fs-eyebrow; font-weight: $bm-fw-black; margin-bottom: .125rem; color: $bm-color-muted; }
+  &__text { margin: 0; white-space: pre-line; overflow-wrap: anywhere; }
+  &--user { align-self: flex-end; background: $bm-color-brand-soft; }
+  &--assistant { align-self: flex-start; background: $bm-color-surface; box-shadow: $bm-shadow-card; } }
+.bm-suggestion { display: inline-flex; align-items: center; gap: $bm-space-2; width: 100%; text-align: left; padding: $bm-space-3 $bm-space-4;
+  background: $bm-color-surface; border: 1px solid $bm-color-border; border-radius: $bm-radius-md; font-weight: $bm-fw-bold; color: $bm-color-ink;
+  &:hover:not(:disabled) { border-color: $bm-color-muted; }
+  &:disabled { opacity: .6; } }
+.bm-composer { display: flex; align-items: flex-end; gap: $bm-space-2; margin-top: $bm-space-3; padding: $bm-space-2 $bm-space-2 $bm-space-2 $bm-space-4;
+  background: $bm-color-surface; border: 1px solid $bm-color-border; border-radius: $bm-radius-xl;
+  &:focus-within { outline: 3px solid $focus-ring-color; outline-offset: 2px; }
+  &__input { flex: 1; border: 0; resize: none; background: transparent; padding: $bm-space-2 0; max-height: 8rem; font: inherit; outline: none; }
+  &__send { width: 2.5rem; height: 2.5rem; flex: none; border: 0; border-radius: 50%; background: $bm-color-brand; color: $bm-color-ink;
+    display: inline-flex; align-items: center; justify-content: center;
+    &:disabled { opacity: .5; } } }
