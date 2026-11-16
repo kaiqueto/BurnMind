@@ -1,15 +1,18 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { LucideMapPin, LucideMessageCircle } from '@lucide/angular';
+import { LucideDownload, LucideMapPin, LucideMessageCircle } from '@lucide/angular';
 import { PageHeaderComponent } from '../../layout/components/page-header/page-header.component';
 import { CardComponent } from '../../shared/components/card/card.component';
 import { DisclaimerComponent } from '../../shared/components/disclaimer/disclaimer.component';
 import { LinkCardComponent } from '../../shared/components/link-card/link-card.component';
+import { CheckInService } from '../check-in/services/check-in.service';
 import { FIRST_STEP_URL } from '../questionnaire/questions';
 import { QuestionnaireService } from '../questionnaire/services/questionnaire.service';
 import { ATTENTION_META, PROFILE_TITLE, buildResult } from './attention';
 import { AttentionRingComponent } from './components/attention-ring/attention-ring.component';
 import { NextStepsComponent } from './components/next-steps/next-steps.component';
+import { PdfExportModalComponent } from './components/pdf-export-modal/pdf-export-modal.component';
+import { latestNote } from './pdf-content';
 
 /** SCR-07 — Resultados · Seu momento de cuidado (/resultados). RF-12, RF-13, RF-14. */
 @Component({
@@ -23,6 +26,8 @@ import { NextStepsComponent } from './components/next-steps/next-steps.component
     LinkCardComponent,
     AttentionRingComponent,
     NextStepsComponent,
+    PdfExportModalComponent,
+    LucideDownload,
     LucideMapPin,
     LucideMessageCircle,
   ],
@@ -65,6 +70,9 @@ import { NextStepsComponent } from './components/next-steps/next-steps.component
             <a class="btn btn-primary btn-lg" routerLink="/chat">
               <svg lucideMessageCircle [size]="18"></svg>Falar com o chat
             </a>
+            <button type="button" class="btn btn-outline-secondary btn-lg" (click)="exportOpen.set(true)">
+              <svg lucideDownload [size]="18"></svg>Exportar resultado (PDF)
+            </button>
             <bm-link-card
               link="/resultados/assistencia-proxima"
               tone="brand-soft"
@@ -80,6 +88,17 @@ import { NextStepsComponent } from './components/next-steps/next-steps.component
             </bm-disclaimer>
           </div>
         </div>
+        @if (exported()) {
+          <p class="bm-disclaimer mt-3" role="status">PDF gerado. Confira a pasta de downloads do seu dispositivo.</p>
+        }
+        @if (exportOpen()) {
+          <bm-pdf-export-modal
+            [submission]="v.submission"
+            [note]="note()"
+            (exported)="exported.set(true)"
+            (closed)="exportOpen.set(false)"
+          />
+        }
       } @else {
         <bm-card tone="brand-soft" class="text-center">
           <h2 class="bm-card-title">Você ainda não respondeu ao questionário.</h2>
@@ -92,12 +111,16 @@ import { NextStepsComponent } from './components/next-steps/next-steps.component
 })
 export class ResultsPageComponent {
   private readonly questionnaire = inject(QuestionnaireService);
+  private readonly checkIns = inject(CheckInService);
   protected readonly firstStep = FIRST_STEP_URL;
+  protected readonly exportOpen = signal(false);
+  protected readonly exported = signal(false);
+  protected readonly note = computed(() => latestNote(this.checkIns.checkIns()));
 
   protected readonly view = computed(() => {
     const submission = this.questionnaire.latest();
     if (!submission) return null;
     const result = buildResult(submission);
-    return { result, meta: ATTENTION_META[result.attentionLevel], profileTitle: PROFILE_TITLE[result.profileSlug] };
+    return { submission, result, meta: ATTENTION_META[result.attentionLevel], profileTitle: PROFILE_TITLE[result.profileSlug] };
   });
 }

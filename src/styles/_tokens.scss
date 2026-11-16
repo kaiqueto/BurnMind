@@ -18,6 +18,12 @@ $bm-color-care-ink:      #3E5847; // Texto sobre care-soft; marca no rodapé
 $bm-color-footer-bg:     #F1ECE4; // Rodapé, notas neutras
 $bm-color-border:        #E6E2DB; // Divisores, bordas, trilho do anel
 
+// Tokens DERIVADOS (não estão na paleta do Figma — [PENDENTE] aprovação do design):
+// borda de controles de formulário com 3:1 sobre bg, branco e brand-soft (WCAG 1.4.11).
+$bm-color-border-strong: #7C8480;
+// foco visível sólido (7,1:1 sobre bg).
+$bm-focus-ring:          $bm-color-brand-strong;
+
 // ---------- Tipografia ----------
 $bm-font-family:   'Nunito Variable', 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; // [ESTIMADO]
 $bm-fs-display:    2.5rem;   // 40px  H1 desktop
@@ -72,7 +78,8 @@ $card-box-shadow:    $bm-shadow-card;
 $btn-font-weight:    $bm-fw-bold;
 $btn-border-radius:  $bm-radius-md;
 $form-check-input-checked-bg-color: $bm-color-brand;
-$input-border-color: $bm-color-border;
+$input-border-color: $bm-color-border-strong;
+$form-check-input-border: var(--bs-border-width) solid #{$bm-color-border-strong};
 $focus-ring-color:   rgba($bm-color-brand-strong, .5);
 $modal-content-border-radius: $bm-radius-xl;
 $enable-shadows: true;
